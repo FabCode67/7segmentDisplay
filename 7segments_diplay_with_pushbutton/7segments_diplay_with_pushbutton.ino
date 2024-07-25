@@ -4,6 +4,7 @@ void setup()
     pinMode(pin, OUTPUT);
   }
   pinMode(9, INPUT_PULLUP);
+  pinMode(10, INPUT_PULLUP);
   Serial.begin(9600);
 }
 void loop()
@@ -21,14 +22,17 @@ void loop()
     {LOW, LOW, LOW, LOW, HIGH, LOW, LOW}
   };
   int i = 0;
-  while(i<10 ){
-      Serial.println(i);
+  while(i<10 && i>=0 ){
       for (int j = 0; j < 7; j++) {
       digitalWrite(j + 2, numbers[i][j]);
     }
     if(digitalRead(9) == LOW){
       delay(500);
       i++;
+    }
+    else if(digitalRead(10) == LOW){
+      delay(500);
+      i--;
     }
   }
 }
